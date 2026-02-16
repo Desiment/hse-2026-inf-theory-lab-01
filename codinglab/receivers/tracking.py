@@ -43,7 +43,8 @@ class TransmissionStats:
 
     Attributes:
         total_messages: Total number of messages processed
-        successful_messages: Number of successfully decoded messages
+        successful_messages: Number of messages, that's were correctly decoded
+        decoded_messages: Number of decoded messages
         failed_messages: Number of messages that failed to decode
         total_source_symbols: Total number of source symbols processed
         total_channel_symbols: Total number of channel symbols processed
@@ -57,7 +58,10 @@ class TransmissionStats:
     """Total number of messages processed."""
 
     successful_messages: int = 0
-    """Number of successfully decoded messages."""
+    """Number of correctly decoded messages."""
+
+    decoded_messages: int = 0
+    """Number of decoded messages."""
 
     failed_messages: int = 0
     """Number of messages that failed to decode."""
@@ -229,9 +233,16 @@ class TrackingReceiver(Receiver[SourceChar, ChannelChar]):
                     },
                 )
                 self._logger.log(decode_log)
-
-                success = True
-
+                self._stats.decoded_messages += 1
+                if hasattr(self._logger, "check_message"):
+                    if self._logger.check_message(decoded_message):
+                        self._stats.successful_messages += 1
+                        success = True
+                    else:
+                        self._stats.validation_errors += 1
+                        success = False
+                else:
+                    success = True
             except Exception as e:
                 # Update statistics for failed decoding
                 self._stats.decode_errors += 1

@@ -7,15 +7,15 @@ output strategies.
 
 """
 
-from typing import List, Dict, Any
-from .types import TransmissionLog, TransmissionLogger
-import pandas as pd
-
 # Module metadata
 __author__ = "Mikhail Mikhailov"
 __license__ = "MIT"
 __version__ = "0.1.0"
 __all__ = ["PlainLogger", "ConsoleLogger", "NullLogger"]
+
+from typing import List, Dict, Any
+from .types import TransmissionLog, TransmissionLogger, Message
+import pandas as pd
 
 
 class PlainLogger(TransmissionLogger):
@@ -108,52 +108,75 @@ class NullLogger(TransmissionLogger):
         """
         pass  # Intentionally does nothing
 
+
 class PandasLogger(TransmissionLogger):
     """
     Logger that stores log entries in a pandas DataFrame.
-    
+
     This logger maintains a DataFrame with all transmission logs,
     enabling easy analysis, filtering, and visualization using
     pandas operations.
-    
+
     Attributes:
         df: DataFrame containing all logged entries
         _logs: Internal list of logs (for backward compatibility)
     """
-    
+
     def __init__(self) -> None:
         """
         Initialize a PandasLogger.
         """
         self._logs: List[TransmissionLog] = []
-        self.row_data : List[Dict[str, Any]] = []
-    
+        self.row_data: Dict[int, List[Dict[str, Any]]] = {}
+
     def log(self, log_entry: TransmissionLog) -> None:
         """
         Store a transmission log entry in a row list
-        
+
         Args:
             log_entry: The transmission log entry to record
         """
         # Store in internal list for backward compatibility
         self._logs.append(log_entry)
-        
+
         # Prepare data for DataFrame
-        self.row_data.append({
-            'timestamp': log_entry.timestamp,
-            'event': log_entry.event.value,
-            'message_id': log_entry.message.id,
-            'message_data': ''.join(log_entry.message.data),
-        })
-   
+        self.row_data[log_entry.message.id] = self.row_data.get(
+            log_entry.message.id, []
+        ) + [
+            {
+                "timestamp": log_entry.timestamp,
+                "event": log_entry.event.value,
+                "message_id": log_entry.message.id,
+                "message_data": "".join(map(str, log_entry.message.data)),
+            }
+        ]
+
+    def check_message(self, message: Message) -> bool:
+        if message.id in self.row_data.keys():
+            return self.row_data[message.id][0]["message_data"] == "".join(map(str, message.data))
+        raise ValueError("Message yet to be transmitted")
+
+    @property
+    def correctly_decoded(self) -> int:
+        df = self.dataframe
+        return (
+            df[(df["event"] == "decoded") | (df["event"] == "source_generated")]
+            .groupby("message_id")["message_data"]
+            .nunique()
+            == 1
+        ).sum()
+
     @property
     def dataframe(self) -> pd.DataFrame:
         """
         Get the log data as a pandas DataFrame.
-        
+
         Returns:
             DataFrame containing all logged entries
         """
-        return pd.DataFrame(self.row_data, columns = ['timestamp', 'event', 'message_id', 'message_data'])
-    
-    
+        data = [
+            entry for message_log in self.row_data.values() for entry in message_log
+        ]
+        return pd.DataFrame(
+            data, columns=["timestamp", "event", "message_id", "message_data"]
+        )
