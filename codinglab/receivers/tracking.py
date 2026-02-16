@@ -5,9 +5,6 @@ This module provides a receiver implementation that collects detailed
 statistics about message reception, including success rates, processing
 times, and compression metrics. It's designed for experimental analysis
 and performance evaluation.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
 
 # Module metadata
@@ -29,7 +26,7 @@ from ..types import (
     TransmissionLogger,
 )
 from ..logger import NullLogger
-
+from copy import copy
 
 @dataclass
 class TransmissionStats:
@@ -144,9 +141,9 @@ class TrackingReceiver(Receiver[SourceChar, ChannelChar]):
         _last_message: The last successfully decoded source message
         _logger: Logger for recording transmission events
 
-    Note: stats does not contain failed_messages and successful_messages as
-    their value can be computed based only on knowning messages sent by
-    sender.
+    Note: stats will not contain failed_messages and successful_messages if
+    logger does not have method ``check_message`` as their value can be
+    computed based only on knowning messages sent by sender.
     """
 
     def __init__(
@@ -286,7 +283,7 @@ class TrackingReceiver(Receiver[SourceChar, ChannelChar]):
             Copy of the current TransmissionStats object with all
             collected metrics
         """
-        return self._stats
+        return copy(self._stats)
 
     def reset_stats(self) -> None:
         """
