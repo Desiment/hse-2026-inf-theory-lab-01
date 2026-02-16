@@ -4,18 +4,19 @@ Experiment framework for the coding experiments library.
 This module provides the infrastructure for running coding experiments,
 including experiment runners and result data structures. It enables
 systematic evaluation of different coding schemes and channel models.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
+
+# Module metadata
+__author__ = "Mikhail Mikhailov"
+__license__ = "MIT"
+__version__ = "0.1.0"
+__all__ = ["ExperimentResult", "ExperimentRunner"]
 
 import time
 from typing import Any, Dict
 from dataclasses import dataclass, field
 from .interfaces import Sender, Channel, SourceChar, ChannelChar
 from .receivers.tracking import TrackingReceiver, TransmissionStats
-
-__all__ = ["ExperimentResult", "ExperimentRunner"]
 
 
 @dataclass
@@ -183,7 +184,4 @@ class ExperimentRunner:
         )
 
 
-# Module metadata
-__author__ = "Mikhail Mikhailov"
-__license__ = "MIT"
-__version__ = "0.1.0"
+

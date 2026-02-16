@@ -1,13 +1,16 @@
 """
-Coding Experiments Library (co)
+Coding Experiments Library (codinglab)
 
 A modular, type-safe library for experiments with information coding algorithms
 in educational and research contexts. The library implements a streaming pipeline
 architecture with clear separation of responsibilities between components.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
+
+# Module metadata
+__author__ = "Mikhail Mikhailov"
+__license__ = "MIT"
+__version__ = "0.1.0"
+__description__ = "A library for experiments with information coding algorithms"
 
 # Re-export from interfaces module
 from .interfaces import (
@@ -34,7 +37,7 @@ from .logger import (
     PlainLogger as PlainLogger,
     ConsoleLogger as ConsoleLogger,
     NullLogger as NullLogger,
-    PandasLogger as PandasLogger
+    PandasLogger as PandasLogger,
 )
 
 # Re-export from senders module
@@ -105,8 +108,4 @@ __all__ = [
     "ExperimentResult",
 ]
 
-# Module metadata
-__author__ = "Mikhail Mikhailov"
-__license__ = "MIT"
-__version__ = "0.1.0"
-__description__ = "A library for experiments with information coding algorithms"
+

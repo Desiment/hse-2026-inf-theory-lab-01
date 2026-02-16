@@ -22,7 +22,7 @@ __all__ = [
 
 
 from dataclasses import dataclass
-from typing import Dict, Any, Sequence, TypeVar, Protocol, Generic
+from typing import Dict, Any, Sequence, TypeVar, Protocol, Generic, runtime_checkable
 from enum import Enum
 
 # Type variables for generic symbol types
@@ -115,6 +115,7 @@ class TransmissionLog(Generic[Symbol]):
     """Additional event-specific data as key-value pairs."""
 
 
+@runtime_checkable
 class TransmissionLogger(Protocol):
     """
     Protocol for logging transmission events.

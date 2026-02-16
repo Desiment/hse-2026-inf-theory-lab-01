@@ -12,11 +12,12 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 __all__ = ["Encoder", "Decoder", "Sender", "Channel", "Receiver"]
 
-from typing import Protocol, Sequence, Iterator, Optional, Dict
+from typing import Protocol, Sequence, Iterator, Optional, Dict, runtime_checkable
 from abc import abstractmethod
 from .types import SourceChar, ChannelChar, Message
 
 
+@runtime_checkable
 class Encoder(Protocol[SourceChar, ChannelChar]):
     """
     Protocol for encoding source messages into channel symbols.
@@ -55,6 +56,7 @@ class Encoder(Protocol[SourceChar, ChannelChar]):
         ...
 
 
+@runtime_checkable
 class Decoder(Protocol[SourceChar, ChannelChar]):
     """
     Protocol for decoding channel symbols back into source messages.
@@ -93,6 +95,7 @@ class Decoder(Protocol[SourceChar, ChannelChar]):
         ...
 
 
+@runtime_checkable
 class Sender(Protocol[SourceChar, ChannelChar]):
     """
     Protocol for message sources with encoding capability.
@@ -140,6 +143,7 @@ class Sender(Protocol[SourceChar, ChannelChar]):
         ...
 
 
+@runtime_checkable
 class Channel(Protocol[ChannelChar]):
     """
     Protocol for communication channels.
@@ -168,6 +172,7 @@ class Channel(Protocol[ChannelChar]):
         ...
 
 
+@runtime_checkable
 class Receiver(Protocol[SourceChar, ChannelChar]):
     """
     Protocol for message receivers with decoding capability.

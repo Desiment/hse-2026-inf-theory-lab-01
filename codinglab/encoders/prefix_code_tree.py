@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from ..types import SourceChar, ChannelChar
 
 
-@dataclass(kw_only = True)
+@dataclass(kw_only=True)
 class TreeNode(Generic[ChannelChar, SourceChar]):
     """
     Node in a prefix code tree.
@@ -177,11 +177,13 @@ class PrefixCodeTree(Generic[ChannelChar, SourceChar]):
 
     def vizualize(self) -> Digraph:
         dot = Digraph()
-        def add(n : TreeNode[ChannelChar, SourceChar], idx: str):
+
+        def add(n: TreeNode[ChannelChar, SourceChar], idx: str):
             dot.node(idx, str(n.value) if n.value else "")
             for char, child in n.children.items():
                 cidx = f"{idx}_{char}"
                 dot.edge(idx, cidx, label=str(char))
                 add(child, cidx)
+
         add(self.root, "r")
         return dot
