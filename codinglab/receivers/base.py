@@ -33,11 +33,6 @@ class BaseReceiver(Receiver[SourceChar, ChannelChar]):
     This class provides common functionality for receiving and decoding
     messages from a channel. It tracks the last successfully decoded
     message and can be extended with additional processing logic.
-
-    Attributes:
-        _decoder: Decoder instance for converting channel to source symbols
-        _last_decoded: The last successfully decoded source message
-        _logger: Logger for recording transmission events
     """
 
     def __init__(
@@ -50,7 +45,7 @@ class BaseReceiver(Receiver[SourceChar, ChannelChar]):
 
         Args:
             decoder: Decoder instance for converting channel symbols
-                    back to source messages
+                     back to source messages
             logger: Logger for recording transmission events
                     (defaults to NullLogger)
         """
