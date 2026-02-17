@@ -26,21 +26,8 @@ autosummary_generate = True
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"]
 
-# -- Napoleon (NumPy style docstrings) --
-napoleon_google_docstring = False
-napoleon_use_keyword = True
-napoleon_numpy_docstring = True
-napoleon_include_init_with_doc = True
-napoleon_include_private_with_doc = False
-napoleon_include_special_with_doc = True
-napoleon_use_admonition_for_examples = True
-napoleon_use_admonition_for_notes = True
-napoleon_use_admonition_for_references = True
-napoleon_use_ivar = False
-napoleon_use_param = True
-napoleon_use_rtype = True
-napoleon_preprocess_types = True
-napoleon_type_aliases = None
+# -- Napoleon (Google style docstrings) --
+napoleon_google_docstring = True
 
 # -- Autodocumentation settings --
 autodoc_default_options = {
@@ -120,21 +107,6 @@ suppress_warnings = [
     # 'autodoc.duplicate_object',
     "ref.misc",
 ]
-
-# forward references (actually don't matter too much but better be here)
-autodoc_type_aliases = {
-    "In": "typing.Any",
-    "Out": "typing.Any",
-    "DistributionType": "pysatl_core.types.DistributionType",
-    "Kind": "pysatl_core.types.Kind",
-    "SamplingStrategy": "pysatl_core.distributions.strategies.SamplingStrategy",
-    "ComputationStrategy": "pysatl_core.distributions.strategies.ComputationStrategy",
-    "Parametrization": "pysatl_core.families.parametrizations.Parametrization",
-    "Support": "pysatl_core.distributions.support.Support",
-    "Sample": "pysatl_core.distributions.sampling.Sample",
-    "Distribution": "pysatl_core.distributions.distribution.Distribution",
-    "ParametricFamily": "pysatl_core.families.parametric_family.ParametricFamily",
-}
 
 # Some checks
 nitpicky = False
