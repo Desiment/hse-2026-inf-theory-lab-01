@@ -56,6 +56,7 @@ from .receivers.tracking import (
 )
 
 # Re-export from encoders module
+from .encoders.identity import IdentityEncoder as IdentityEncoder
 from .encoders.prefix_coder import PrefixEncoderDecoder as PrefixEncoderDecoder
 from .encoders.prefix_code_tree import (
     PrefixCodeTree as PrefixCodeTree,
