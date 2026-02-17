@@ -17,12 +17,8 @@ from typing import Sequence, Dict, Optional, TypeVar, Generic
 from ..interfaces import Encoder, Decoder
 from ..types import SourceChar, ChannelChar
 
-S = TypeVar("S")  # Source symbol type
-C = TypeVar("C")  # Channel symbol type
-
 
 class IdentityEncoder(
-    Generic[SourceChar, ChannelChar],
     Encoder[SourceChar, ChannelChar],
     Decoder[SourceChar, ChannelChar],
 ):
