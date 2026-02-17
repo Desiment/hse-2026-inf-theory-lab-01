@@ -280,7 +280,7 @@ class TestTrackingReceiver:
         stats = receiver.get_stats()
         assert stats.total_messages == 2
         assert stats.decoded_messages == 2
-        assert stats.successful_messages == 2  # all successfull
+        assert stats.successful_messages == 2  # all successful
         assert stats.validation_errors == 0
 
     def test_get_last_message_initial(self, identity_decoder):

@@ -251,7 +251,7 @@ decoding without separators between codewords.
    print(symbols)  # ['A', 'B', 'C']
 
    # Visualize the tree (requires graphviz)
-   dot = tree.vizualize() #codespell
+   dot = tree.vizualize()
    dot.render("code_tree", format="png")
 
 .. _experiment:

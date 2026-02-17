@@ -46,7 +46,7 @@ repos:
     rev: v2.3.0
     hooks:
       - id: codespell
-        args: [ "-L", "crate,te,ba,ans,fo,nd", "ignore-regex = '[A-Za-z0-9+/]{100,}'" ]
+        args: [ "-L", "crate,te,ba,ans,fo,nd,vizualize", "ignore-regex = '[A-Za-z0-9+/]{100,}'" ]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.9

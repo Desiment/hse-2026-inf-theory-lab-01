@@ -171,7 +171,7 @@ class PrefixCodeTree(Generic[ChannelChar, SourceChar]):
         # Return the leaf value and current position
         return node.value, position
 
-    def vizualize(self) -> Digraph:  # codespell:ignore vizualize
+    def vizualize(self) -> Digraph:
         dot = Digraph()
 
         def add(n: TreeNode[ChannelChar, SourceChar], idx: str):
