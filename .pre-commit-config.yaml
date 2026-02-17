@@ -46,8 +46,7 @@ repos:
     rev: v2.3.0
     hooks:
       - id: codespell
-        exclude: '.*\.ipynb'
-        args: [ "-L", "crate,te,ba,ans,fo,nd" ]
+        args: [ "-L", "crate,te,ba,ans,fo,nd", "ignore-regex = '[A-Za-z0-9+/]{100,}'" ]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.9
