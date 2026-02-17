@@ -15,8 +15,8 @@ For installation, clone the repository and install via poetry:
 
 .. code-block:: bash
 
-   git clone https://github.com/yourusername/codinglab.git
-   cd codinglab
+   git clone https://github.com/Desiment/hse-2026-inf-theory-lab-01.git
+   cd hse-2026-inf-theory-lab-01
    poetry install
 
 Dependencies
