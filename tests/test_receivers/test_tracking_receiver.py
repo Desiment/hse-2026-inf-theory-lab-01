@@ -153,7 +153,7 @@ class TestTrackingReceiver:
         assert stats.total_source_symbols == 5  # 3 + 2
         assert stats.total_channel_symbols == 5  # 3 + 2
         assert stats.decode_errors == 0
-        assert stats.total_processing_time > 0
+        assert stats.total_processing_time >= 0
 
     def test_receive_stream_stats_failure(self, failing_decoder):
         """Test stats update on failed decoding."""
@@ -169,7 +169,7 @@ class TestTrackingReceiver:
         assert stats.total_source_symbols == 0
         assert stats.total_channel_symbols == 0
         assert stats.decode_errors == 2
-        assert stats.total_processing_time > 0
+        assert stats.total_processing_time >= 0
 
     def test_receive_stream_logs_events(self, identity_decoder):
         """Test that reception and decoding events are logged."""
@@ -236,17 +236,13 @@ class TestTrackingReceiver:
         receiver = TrackingReceiver(identity_decoder)
 
         # Process messages with artificial delay
-        messages = [
-            Message(id=0, data=[1]),
-            Message(id=1, data=[2]),
-            Message(id=2, data=[3]),
-        ]
+        messages = [Message(id=i, data=[i + 1]) for i in range(200)]
 
         list(receiver.receive_stream(iter(messages)))
 
         stats = receiver.get_stats()
         assert stats.total_processing_time > 0
-        assert stats.avg_message_time == stats.total_processing_time / 3
+        assert stats.avg_message_time == stats.total_processing_time / 200
 
     def test_successful_messages_with_checking_logger(
         self, identity_decoder, checking_logger

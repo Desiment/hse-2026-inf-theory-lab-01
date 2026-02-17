@@ -97,7 +97,6 @@ class TestExperimentRunner:
     def tracking_receiver(self, base_logger):
         """Provide a TrackingReceiver with mock decoder."""
         decoder = MockDecoder({0: "0", 1: "1"})
-        PandasLogger()
         return TrackingReceiver(decoder, logger=base_logger)
 
     @pytest.fixture
@@ -128,14 +127,14 @@ class TestExperimentRunner:
 
     def test_run_basic(self, experiment_runner):
         """Test basic experiment run."""
-        result = experiment_runner.run(num_messages=5)
+        result = experiment_runner.run(num_messages=100)
 
         assert isinstance(result, ExperimentResult)
-        assert result.stats.total_messages == 5
-        assert result.stats.decoded_messages == 5
+        assert result.stats.total_messages == 100
+        assert result.stats.decoded_messages == 100
         assert result.duration > 0
-        assert result.metadata["num_messages"] == 5
-        assert result.metadata["success_count"] == 5
+        assert result.metadata["num_messages"] == 100
+        assert result.metadata["success_count"] == 100
         assert result.metadata["failure_count"] == 0
         assert "components" in result.metadata
         assert result.metadata["components"]["sender_type"] == "MockSender"
