@@ -27,6 +27,10 @@ dependencies = [
 
 [tool.poetry]
 package-mode = true
+name = "codinglab"
+version = "0.1.0"
+description = "Library for coding experiments"
+authors = [ "Mikhail Mikhailov" ]
 
 [tool.mypy]
 ignore_missing_imports = true
