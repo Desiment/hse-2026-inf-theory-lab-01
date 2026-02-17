@@ -5,7 +5,9 @@ requires = [ "poetry-core>=2,<3" ]
 [project]
 name = "codinglab"
 version = "0.1.0"
+description = "Library for coding experiments"
 license = { text = "MIT" }
+authors = [ { name = "Mikhail Mikhailov", email = "desiment@yandex.ru" } ]
 requires-python = ">=3.11,<3.15"
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
