@@ -5,10 +5,13 @@ This module provides a sender implementation that generates messages
 randomly according to a specified probability distribution over the
 source alphabet. It's useful for simulating realistic message sources
 and testing coding schemes under various statistical conditions.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
+
+# Module metadata
+__author__ = "Mikhail Mikhailov"
+__license__ = "MIT"
+__version__ = "0.1.0"
+__all__ = ["ProbabilisticSender"]
 
 import random
 import time
@@ -17,12 +20,6 @@ from .base import BaseSender
 from ..interfaces import SourceChar, ChannelChar, Encoder
 from ..types import Message, TransmissionEvent, TransmissionLog, TransmissionLogger
 from ..logger import NullLogger
-
-# Module metadata
-__author__ = "Mikhail Mikhailov"
-__license__ = "MIT"
-__version__ = "0.1.0"
-__all__ = ["ProbabilisticSender"]
 
 
 class ProbabilisticSender(BaseSender[SourceChar, ChannelChar]):

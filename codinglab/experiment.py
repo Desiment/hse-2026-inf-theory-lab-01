@@ -137,9 +137,6 @@ class ExperimentRunner:
 
         Args:
             num_messages: Number of messages to transmit (default: 100)
-            progress_callback: Optional callback function for reporting
-                              progress. It should accept two arguments:
-                              current message count and total messages.
 
         Returns:
             ExperimentResult object containing all experiment data
@@ -182,6 +179,3 @@ class ExperimentRunner:
                 },
             },
         )
-
-
-

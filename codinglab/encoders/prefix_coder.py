@@ -5,9 +5,6 @@ This module provides an abstract base class for implementing prefix codes,
 which are variable-length codes where no codeword is a prefix of another.
 This property enables unique decoding without separators between codewords.
 Common examples include Huffman coding, Shannon-Fano coding, and others.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
 
 # Module metadata
@@ -197,7 +194,9 @@ class PrefixEncoderDecoder(
         while position < len(encoded_list):
             symbol, new_position = self._tree.decode(encoded_list, position)
             if symbol is None:
-                raise ValueError(f"Cannot decode at position {position}")
+                raise ValueError(
+                    f"Cannot decode sequence {encoded}. Processed to {position}"
+                )
             decoded.append(symbol)
             position = new_position
 

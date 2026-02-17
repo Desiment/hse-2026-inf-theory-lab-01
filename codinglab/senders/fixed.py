@@ -6,6 +6,12 @@ set of pre-defined messages. It's useful for reproducible experiments and
 testing scenarios where specific message sequences are required.
 """
 
+# Module metadata
+__author__ = "Mikhail Mikhailov"
+__license__ = "MIT"
+__version__ = "0.1.0"
+__all__ = ["FixedMessagesSender"]
+
 import time
 from typing import Sequence, Iterator, List, Optional
 from .base import BaseSender
@@ -19,12 +25,6 @@ from ..types import (
     TransmissionLog,
 )
 from ..logger import NullLogger
-
-# Module metadata
-__author__ = "Mikhail Mikhailov"
-__license__ = "MIT"
-__version__ = "0.1.0"
-__all__ = ["FixedMessagesSender"]
 
 
 class FixedMessagesSender(BaseSender[SourceChar, ChannelChar]):

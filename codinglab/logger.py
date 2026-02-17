@@ -4,7 +4,6 @@ Logger implementations for the coding experiments library.
 This module provides concrete implementations of the TransmissionLogger
 protocol for logging transmission events with different storage and
 output strategies.
-
 """
 
 # Module metadata
@@ -14,7 +13,7 @@ __version__ = "0.1.0"
 __all__ = ["PlainLogger", "ConsoleLogger", "NullLogger"]
 
 from typing import List, Dict, Any
-from .types import TransmissionLog, TransmissionLogger, Message
+from .types import TransmissionLog, TransmissionEvent, TransmissionLogger, Message
 import pandas as pd
 
 
@@ -153,18 +152,15 @@ class PandasLogger(TransmissionLogger):
 
     def check_message(self, message: Message) -> bool:
         if message.id in self.row_data.keys():
-            return self.row_data[message.id][0]["message_data"] == "".join(map(str, message.data))
+            if (
+                self.row_data[message.id][0]["event"]
+                != TransmissionEvent.SOURCE_GENERATED
+            ):
+                raise ValueError("No log entry with original message")
+            return self.row_data[message.id][0]["message_data"] == "".join(
+                map(str, message.data)
+            )
         raise ValueError("Message yet to be transmitted")
-
-    @property
-    def correctly_decoded(self) -> int:
-        df = self.dataframe
-        return (
-            df[(df["event"] == "decoded") | (df["event"] == "source_generated")]
-            .groupby("message_id")["message_data"]
-            .nunique()
-            == 1
-        ).sum()
 
     @property
     def dataframe(self) -> pd.DataFrame:

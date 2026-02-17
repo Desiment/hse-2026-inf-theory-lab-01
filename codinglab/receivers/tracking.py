@@ -28,6 +28,7 @@ from ..types import (
 from ..logger import NullLogger
 from copy import copy
 
+
 @dataclass
 class TransmissionStats:
     """
@@ -73,7 +74,7 @@ class TransmissionStats:
     """Number of decoding errors encountered."""
 
     validation_errors: int = 0
-    """Number of validation errors (reserved for future use)."""
+    """Number of validation errors (decoded message not match original)."""
 
     total_processing_time: float = 0.0
     """Total time spent processing messages (seconds)."""
@@ -143,7 +144,7 @@ class TrackingReceiver(Receiver[SourceChar, ChannelChar]):
 
     Note: stats will not contain failed_messages and successful_messages if
     logger does not have method ``check_message`` as their value can be
-    computed based only on knowning messages sent by sender.
+    computed based only on knowing messages sent by sender.
     """
 
     def __init__(
@@ -239,6 +240,7 @@ class TrackingReceiver(Receiver[SourceChar, ChannelChar]):
                         self._stats.validation_errors += 1
                         success = False
                 else:
+                    self._stats.successful_messages += 1
                     success = True
             except Exception as e:
                 # Update statistics for failed decoding

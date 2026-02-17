@@ -10,9 +10,7 @@ functionality like error detection, validation, or statistics collection.
 __author__ = "Mikhail Mikhailov"
 __license__ = "MIT"
 __version__ = "0.1.0"
-__all__ = [
-    "BaseReceiver",
-]
+__all__ = ["BaseReceiver"]
 
 import time
 from typing import Iterator, Optional

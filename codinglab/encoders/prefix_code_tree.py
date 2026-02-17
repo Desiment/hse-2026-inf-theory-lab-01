@@ -5,9 +5,6 @@ This module implements a prefix code tree (also known as a decoding tree
 or code tree) used for efficient decoding of prefix codes. The tree
 enables unique decoding of variable-length codes without separators
 between codewords.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
 
 # Module metadata
@@ -15,6 +12,7 @@ __author__ = "Mikhail Mikhailov"
 __license__ = "MIT"
 __version__ = "0.1.0"
 __all__ = ["TreeNode", "PrefixCodeTree"]
+
 from typing import Dict, Generic, Optional, List, Tuple
 from graphviz import Digraph
 from dataclasses import dataclass, field
@@ -175,7 +173,7 @@ class PrefixCodeTree(Generic[ChannelChar, SourceChar]):
         # Return the leaf value and current position
         return node.value, position
 
-    def vizualize(self) -> Digraph:
+    def vizualize(self) -> Digraph:  # codespell:ignore vizualize
         dot = Digraph()
 
         def add(n: TreeNode[ChannelChar, SourceChar], idx: str):
