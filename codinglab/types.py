@@ -43,10 +43,6 @@ class Message(Generic[Symbol]):
 
     This class represents a message as an immutable sequence of symbols
     with a unique identifier for tracking purposes.
-
-    Attributes:
-        id: Unique identifier for the message
-        data: Sequence of symbols comprising the message
     """
 
     id: int
@@ -94,12 +90,6 @@ class TransmissionLog(Generic[Symbol]):
     Contains detailed information about a specific event in the
     transmission pipeline, including timing, message data, and
     additional context.
-
-    Attributes:
-        timestamp: Time of the event in seconds since epoch
-        event: Type of transmission event
-        message: The message associated with the event
-        data: Additional event-specific data as key-value pairs
     """
 
     timestamp: float

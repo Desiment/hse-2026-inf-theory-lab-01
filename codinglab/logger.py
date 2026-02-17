@@ -23,9 +23,6 @@ class PlainLogger(TransmissionLogger):
 
     This logger maintains an in-memory list of all transmission logs,
     which can be accessed later for analysis or debugging.
-
-    Attributes:
-        logs: List of all logged TransmissionLog entries
     """
 
     def __init__(self) -> None:
@@ -51,10 +48,6 @@ class ConsoleLogger(TransmissionLogger):
 
     This logger outputs transmission events to standard output,
     making it useful for real-time monitoring and debugging.
-
-    Attributes:
-        verbose: If True, prints detailed log information;
-                 if False, prints only summary information
     """
 
     def __init__(self, verbose: bool = True) -> None:
@@ -117,7 +110,6 @@ class PandasLogger(TransmissionLogger):
     pandas operations.
 
     Attributes:
-        df: DataFrame containing all logged entries
         _logs: Internal list of logs (for backward compatibility)
     """
 
