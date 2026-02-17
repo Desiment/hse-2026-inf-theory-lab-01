@@ -47,7 +47,7 @@ jobs:
             pip-${{ runner.os }}-
 
       - name: Install dependencies (with dev)
-        run: poetry install --dev --no-interaction
+        run: poetry install --with dev --no-interaction
 
       - name: Pre-commit (all files)
         run: poetry run pre-commit run --all-files
