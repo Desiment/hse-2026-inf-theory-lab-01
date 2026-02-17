@@ -1,4 +1,3 @@
-# codinglab/encoders/identity.py
 """
 Identity encoder implementation for the coding experiments library.
 
