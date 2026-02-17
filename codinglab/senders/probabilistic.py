@@ -53,14 +53,10 @@ class ProbabilisticSender(BaseSender[SourceChar, ChannelChar]):
 
         Args:
             encoder: Encoder instance for converting source to channel symbols
-            probabilities: Dictionary mapping source symbols to their
-                          probabilities (must sum to 1.0)
-            message_length_range: Tuple of (min_length, max_length) for
-                                 generated messages
-            logger: Logger for recording transmission events
-                    (defaults to NullLogger)
-            seed: Optional seed for the random number generator for
-                  reproducible experiments
+            probabilities: Dictionary mapping source symbols to their probabilities (must sum to 1.0)
+            message_length_range: Tuple of (min_length, max_length) for generated messages
+            logger: Logger for recording transmission events (defaults to NullLogger)
+            seed: Optional seed for the random number generator forreproducible experiments
 
         Raises:
             ValueError: If probabilities don't sum to approximately 1.0,

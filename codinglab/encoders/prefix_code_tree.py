@@ -23,12 +23,10 @@ from ..types import SourceChar, ChannelChar
 class TreeNode(Generic[ChannelChar, SourceChar]):
     """
     Node in a prefix code tree.
-
     Each node in the tree represents either:
-    - An internal node (value is None): has children for possible
-      next symbols in a code sequence
-    - A leaf node (value is not None): represents a complete code
-      for a source symbol
+
+    - An internal node (value is None): has children for possible next symbols in a code sequence
+    - A leaf node (value is not None): represents a complete code for a source symbol
 
     Attributes:
         value: Source symbol at this node (None for internal nodes)

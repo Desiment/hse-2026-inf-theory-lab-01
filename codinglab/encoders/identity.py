@@ -13,7 +13,7 @@ __license__ = "MIT"
 __version__ = "0.1.0"
 __all__ = ["IdentityEncoder"]
 
-from typing import Sequence, Dict, Optional, TypeVar, Generic
+from typing import Sequence, Dict, Optional
 from ..interfaces import Encoder, Decoder
 from ..types import SourceChar, ChannelChar
 
