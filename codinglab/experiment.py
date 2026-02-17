@@ -104,8 +104,7 @@ class ExperimentRunner:
         Args:
             sender: Sender instance for generating and encoding messages
             channel: Channel instance for transmitting messages
-            receiver: TrackingReceiver instance for receiving, decoding,
-                     and collecting statistics
+            receiver: TrackingReceiver instance for collecting stats
 
         Raises:
             TypeError: If receiver is not a TrackingReceiver instance
