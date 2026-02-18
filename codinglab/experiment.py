@@ -28,12 +28,6 @@ class ExperimentResult:
     including statistics, timing information, and any additional
     metadata. It provides computed properties for common analysis
     and can be serialized for storage or further processing.
-
-    Attributes:
-        stats: Transmission statistics collected during the experiment
-        start_time: Experiment start time in seconds since epoch
-        end_time: Experiment end time in seconds since epoch
-        metadata: Additional experiment metadata as key-value pairs
     """
 
     stats: TransmissionStats
@@ -85,11 +79,6 @@ class ExperimentRunner:
     This class coordinates the interaction between sender, channel,
     and receiver components to run complete transmission experiments.
     It manages the data flow, timing, and result collection.
-
-    Attributes:
-        sender: Message source with encoding capability
-        channel: Communication channel for message transmission
-        receiver: Message receiver with decoding and tracking
     """
 
     def __init__(

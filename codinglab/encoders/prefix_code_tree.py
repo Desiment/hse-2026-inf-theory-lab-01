@@ -27,10 +27,6 @@ class TreeNode(Generic[ChannelChar, SourceChar]):
 
     - An internal node (value is None): has children for possible next symbols in a code sequence
     - A leaf node (value is not None): represents a complete code for a source symbol
-
-    Attributes:
-        value: Source symbol at this node (None for internal nodes)
-        children: Dictionary mapping channel symbols to child nodes
     """
 
     value: Optional[SourceChar] = None
@@ -63,9 +59,6 @@ class PrefixCodeTree(Generic[ChannelChar, SourceChar]):
     traversing from the root to leaves based on the input sequence.
     Each leaf corresponds to a source symbol, and the path from root
     to leaf defines the code for that symbol.
-
-    Attributes:
-        root: Root node of the prefix code tree
     """
 
     def __init__(

@@ -4,9 +4,6 @@ Noiseless channel implementation for the coding experiments library.
 This module provides a simple channel implementation that transmits
 messages without any modification, noise, or errors. It serves as a
 baseline for comparing with more complex channel models.
-
-Author: Mikhail Mikhailov
-License: MIT
 """
 
 # Module metadata

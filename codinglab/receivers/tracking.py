@@ -38,18 +38,6 @@ class TransmissionStats:
     including message counts, symbol counts, error rates, and timing
     information. It also provides computed properties for common
     performance indicators.
-
-    Attributes:
-        total_messages: Total number of messages processed
-        successful_messages: Number of messages, that's were correctly decoded
-        decoded_messages: Number of decoded messages
-        failed_messages: Number of messages that failed to decode
-        total_source_symbols: Total number of source symbols processed
-        total_channel_symbols: Total number of channel symbols processed
-        decode_errors: Number of decoding errors encountered
-        validation_errors: Number of validation errors (currently unused)
-        total_processing_time: Total time spent processing messages (seconds)
-        avg_message_time: Average processing time per message (seconds)
     """
 
     total_messages: int = 0
@@ -135,12 +123,6 @@ class TrackingReceiver(Receiver[SourceChar, ChannelChar]):
     statistics about the reception process, including timing information,
     success rates, and compression metrics. It's ideal for experimental
     analysis and performance evaluation.
-
-    Attributes:
-        _decoder: Decoder instance for converting channel to source symbols
-        _stats: Statistics collected during message reception
-        _last_message: The last successfully decoded source message
-        _logger: Logger for recording transmission events
 
     Note: stats will not contain failed_messages and successful_messages if
     logger does not have method ``check_message`` as their value can be
